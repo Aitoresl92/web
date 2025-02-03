@@ -1,0 +1,271 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="logo.png" alt="Delivery Warehouse Logo" class="header-logo">
+                <h1>WareHouse Manager</h1>
+            </div>
+        </header>
+
+        <nav>
+            <div class="menu-grid">
+                <div class="menu-button-row">
+                    <button class="menu-button" onclick="openSection('warehouse-management')">
+                        GESTIÓN DE ALMACÉN
+                    </button>
+                    <button class="menu-button" onclick="openSection('materials-list')">
+                        LISTA DE MATERIALES
+                    </button>
+                </div>
+                <div class="menu-button-row">
+                    <button class="menu-button" onclick="openSection('valve-management')">
+                        GESTIÓN DE VÁLVULAS
+                    </button>
+                    <button class="menu-button" onclick="openSection('stock-alerts')">
+                        ALERTAS DE STOCK
+                    </button>
+                    <button class="menu-button" onclick="openSection('orders-management')">
+                        PEDIDOS
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <main id="main-content">
+            <section id="warehouse-management" class="hidden">
+                <h2>Gestión de Almacén</h2>
+                <form id="warehouse-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="material-input">Nombre del Material</label>
+                            <input type="text" id="material-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="cantidad-input">Cantidad</label>
+                            <input type="number" id="cantidad-input">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="stock-minimo-input">Stock Mínimo</label>
+                            <input type="number" id="stock-minimo-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="ubicacion-input">Ubicación</label>
+                            <input type="text" id="ubicacion-input">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="planta-input">Planta</label>
+                            <input type="text" id="planta-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="warehouse-photo">Foto</label>
+                            <input type="file" id="warehouse-photo" accept="image/*">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="camera-btn" onclick="triggerPhotoCapture()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                            Tomar Foto
+                        </button>
+                        <button type="submit" class="submit-btn">Añadir Material</button>
+                    </div>
+                </form>
+            </section>
+
+            <section id="valve-management" class="hidden">
+                <h2>Gestión de Válvulas</h2>
+                <form id="valve-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="valve-name-input">Nombre de la Válvula</label>
+                            <input type="text" id="valve-name-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="valve-cantidad-input">Cantidad</label>
+                            <input type="number" id="valve-cantidad-input">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="valve-stock-minimo-input">Stock Mínimo</label>
+                            <input type="number" id="valve-stock-minimo-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="valve-ubicacion-input">Ubicación</label>
+                            <input type="text" id="valve-ubicacion-input">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="valve-planta-input">Planta</label>
+                            <input type="text" id="valve-planta-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="valve-dn-input">DN</label>
+                            <input type="text" id="valve-dn-input">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="valve-pn-input">PN</label>
+                            <input type="text" id="valve-pn-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="valve-kv-input">KV</label>
+                            <input type="text" id="valve-kv-input">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="valve-photo">Foto</label>
+                            <input type="file" id="valve-photo" accept="image/*">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="camera-btn" onclick="triggerValvePhotoCapture()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                            Tomar Foto
+                        </button>
+                        <button type="submit" class="submit-btn">Añadir Válvula</button>
+                    </div>
+                </form>
+            </section>
+
+            <section id="materials-list" class="hidden">
+                <h2>Lista de Materiales</h2>
+                <div class="search-container">
+                    <input type="text" id="material-search" placeholder="Buscar materiales...">
+                </div>
+                <div id="materials-container" class="materials-grid">
+                    <!-- Dynamically populated materials will appear here -->
+                </div>
+                <div id="material-detail" class="material-detail hidden">
+                    <h3 id="detail-material-name"></h3>
+                    <div class="material-actions">
+                        <button id="decrement-btn" class="action-btn decrement">-</button>
+                        <span id="current-quantity">0</span>
+                        <button id="increment-btn" class="action-btn increment">+</button>
+                        <button id="delete-btn" class="action-btn delete">🗑️</button>
+                    </div>
+                    <div class="material-info">
+                        <p>Ubicación: <span id="detail-location"></span></p>
+                        <p>Planta: <span id="detail-plant"></span></p>
+                        <p>Stock Mínimo: <span id="detail-min-stock"></span></p>
+                    </div>
+                    <div id="additional-material-details"></div>
+                    <div id="material-photo-container">
+                        <input type="file" id="material-photo" accept="image/*" style="display:none;">
+                        <button onclick="document.getElementById('material-photo').click()">Añadir Foto</button>
+                        <div id="material-photo-display"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="stock-alerts" class="hidden">
+                <h2>Alertas de Stock</h2>
+                <div id="alerts-container" class="alerts-grid">
+                    <!-- Dynamically populated stock alerts will appear here -->
+                </div>
+            </section>
+
+            <section id="orders-management" class="hidden">
+                <h2>Gestión de Pedidos</h2>
+                <form id="orders-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="order-number-input">Número de Pedido</label>
+                            <input type="text" id="order-number-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="order-manufacturer-input">Fabricante</label>
+                            <input type="text" id="order-manufacturer-input">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="order-person-input">Persona</label>
+                            <input type="text" id="order-person-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="order-location-input">Ubicación</label>
+                            <input type="text" id="order-location-input">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="order-quantity-input">Cantidad</label>
+                            <input type="number" id="order-quantity-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="order-description-input">Descripción</label>
+                            <input type="text" id="order-description-input">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="order-photo">Foto</label>
+                            <input type="file" id="order-photo" accept="image/*">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="camera-btn" onclick="triggerOrderPhotoCapture()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                            Tomar Foto
+                        </button>
+                        <button type="submit" class="submit-btn">Añadir Pedido</button>
+                    </div>
+                </form>
+
+                <div class="search-container">
+                    <input type="text" id="order-search" placeholder="Buscar pedidos...">
+                </div>
+
+                <div id="orders-container" class="orders-grid">
+                    <!-- Dynamically populated orders will appear here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAMwoE_JWQcI6OJ9knRwlARTKzBY-bnVkw",
+    authDomain: "warehouse-manager-21361.firebaseapp.com",
+    projectId: "warehouse-manager-21361",
+    storageBucket: "warehouse-manager-21361.firebasestorage.app",
+    messagingSenderId: "278201996278",
+    appId: "1:278201996278:web:f4c462d13fd41a5d1b6dd7",
+    measurementId: "G-Q3EV79TXSX"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+</body>
+</html>
